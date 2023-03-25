@@ -1,4 +1,4 @@
-This is a program that simulates an ATM machine. It allows the user to create a 4 digit pin, deposit or withdraw money, check their balance, change their pin, and exit the program. Additionally, there are three secret words associated with each pin that the user must know to perform certain actions.
+###This is a program that simulates an ATM machine. It allows the user to create a 4 digit pin, deposit or withdraw money, check their balance, change their pin, and exit the program. Additionally, there are three secret words associated with each pin that the user must know to perform certain actions.###
 
 The program uses a class called ATM with a constructor that initializes the pin, balance, and calls the manu method which is used to display the options to the user and receive input. The manu method uses an if-else statement to determine what action the user wants to perform and calls the corresponding method.
 
