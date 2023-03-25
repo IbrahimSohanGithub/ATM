@@ -9,7 +9,7 @@ class ATM:
     def manu(self):
 
         user_input = input("""
-        Hello, How may I help you?
+        Hello Sir, Welcome to ATM. Please Create your pin first. Then you can use this ATM.
         
         1. Press 1 to create pin.
         2. Press 2 to change pin.
@@ -67,20 +67,30 @@ class ATM:
             self.manu()
     # =================================================================================================
     def show_pin(self):
+            
+            attempt = 0
+            while attempt < 3: # Here user can try 3 times to enter pin. If user enter wrong pin 3 times then it will redirect to main menu.
 
+                secret_word_one = input("Enter your first secret word to see your pin : ")
 
-            secret_word_one = input("Enter your first secret word to see your pin :")
-
-            if self.secret_word_one == secret_word_one:
-                user_pin = input("Please enter your pin to see : ")
-                if user_pin == self.pin:
-                    print(f"Your pin number is {self.pin}")
-                    self.manu()
+                if self.secret_word_one == secret_word_one:
+                    user_pin = input("Please enter your pin to see : ")
+                    if user_pin == self.pin:
+                        print(f"Your pin number is : [ {self.pin} 1]")
+                        self.manu()
+                    else:
+                        if attempt < 2:
+                            print("You enter a wrong password. Try again!")
+                        else:
+                            print("You have exceeded the maximum number of attempts. Redirecting to main menu.")
+                        self.manu()
                 else:
-                    print("You enter a wrong secret word. Try again!")
-                    self.manu()
-            else:
-                print("You entered your first secret word wrong. Try again!")
+                    if attempt < 2:
+                        print("You entered your first secret word wrong. Try again!")
+                    else:
+                        print("You have exceeded the maximum number of attempts. Redirecting to main menu.")
+                attempt += 1
+            self.manu()
 
     # =================================================================================================
     def change_pin(self):
@@ -92,13 +102,43 @@ class ATM:
                 new_pin = input("Enter your new pin : ")
                 self.pin = new_pin
                 print("pin set successfully")
-                self.manu()
+                # self.manu()
             else:
                 print("You enter a wrong password. Try again!")
                 self.manu()
         else:
             print("You entered your second secret word wrong. Try again!")
             self.manu()
+
+# Here we ask user if he/she want to change secret word or not.
+
+        changeing_secret_word = input("Do you want to change your secret word? (yes/no) : ")
+
+        if changeing_secret_word == "yes":
+            ask_opinion = input("Which secret word you want to change? (first/second/third) : ")
+            if ask_opinion == "first":
+                secret_word = input("Enter your secret word : ")
+                self.secret_word_one = secret_word
+                print("Your first secret word is changed successfully.")
+                self.manu()
+            
+            elif ask_opinion == "second":
+                secret_word = input("Enter your secret word : ")
+                self.secret_word_two = secret_word
+                print("Your second secret word is changed successfully.")
+                self.manu()
+            
+            elif ask_opinion == "third":
+                secret_word = input("Enter your secret word : ")
+                self.secret_word_three = secret_word
+                print("Your third secret word is changed successfully.")
+                self.manu()
+            
+            else:
+                print("You enter a wrong word. Try again!")
+                self.manu()
+        else:
+            print("Okey, I will not change your secret word.")
 
     # =================================================================================================
 
@@ -175,6 +215,7 @@ class ATM:
         self.manu()
 
 # =========================================================================================================================================
+
 
 ibrahim = ATM()
 print(ibrahim.secret_word_two)
