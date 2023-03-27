@@ -55,9 +55,9 @@ class ATMMachine:
     def create_pin(self):
 
         attempt = 1
-        while attempt < 4:
+        while attempt < 4: # this whlile loop give 3 attempt to create pin number
             user_pin = input("Enter your number to create pin : \n")
-            if len(user_pin) < 5 and len(user_pin) > 3:  # user_pin < 5 and user_pin > 3:
+            if len(user_pin) < 5 and len(user_pin) > 3:  # Here we check pin is 4 digit or not
                 self.pin = user_pin
                 print("Your pin was created successfully. Now you can create your secret words.", end='\n\n')
 
@@ -72,10 +72,11 @@ class ATMMachine:
                 print("Welcome Sir, Your pin was created successfully.")
                 self.manu()
 
-            else:
-                if attempt < 3:
+            else: # We give 3 attempt to create pin number otherwise it will exit from the program
+                if attempt < 3: # it will give 3 attempt to create pin number
                     print(f"You must give 4 digit to create your pin. You have only {3 - attempt} chance.")
-                else:
+
+                else: # it user give wrong input 3 times then it will exit from the program with this message
                     print("You have used your maximum attempt. You are redirected to the out of ATM Machine.")
                     sys.exit()
             attempt += 1
