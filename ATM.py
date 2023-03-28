@@ -36,10 +36,10 @@ class ATMMachine:
             self.change_pin()
 
         elif user_input == "2":
-            self.show_pin()
+            self.show_pin_number()
 
         elif user_input == "3":
-            self.check_balace()
+            self.check_balance()
 
         elif user_input == "4":
             self.diposit()
@@ -155,17 +155,93 @@ class ATMMachine:
                     print("You have used your maximum attempt to give your first secret word. You are redirected to main manu.", end='\n\n')
                     self.manu()
             attempt_for_secret_word += 1
-# ========================================================================================================================================================================
+# ======================================================================================================================
+    def show_pin_number(self):
+        attempt_for_secret_word = 1
+        while attempt_for_secret_word < 4:
 
+            user_secret_word = input("Please enter your second secret word to show your pin : \n")
+            if user_secret_word == self.second_secret_word:
+                attempt_for_pin = 1
+                while attempt_for_pin < 4:
+                    ask_for_pin = input("Enter your pin number to show your pin : \n")
+                    if ask_for_pin == self.pin:
+                        print(f"Here is your pin number : {self.pin}", end="\n\n")
+                        self.manu()
 
+                    else:
+                        if attempt_for_pin < 3:
+                            print(f"You entered a wrong pin. You have only {3 - attempt_for_pin} chance.", end="\n\n")
+                        else:
+                            print("You have used your maximum attempt to show pin. You are redirected to main manu.",end='\n\n')
+                            self.manu()
+                    attempt_for_pin += 1
+            else:
+                if attempt_for_secret_word < 3:
+                    print(f"You entered your second secret word wrong. You have only {3 - attempt_for_secret_word} chance.", end='\n\n')
+                else:
+                    print("You have used your maximum attempt to give your first secret word. You are redirected to main manu.", end='\n\n')
+                    self.manu()
+            attempt_for_secret_word += 1
+#=======================================================================================================================
+    def check_balance(self):
+        attempt_for_secret_word = 1
+        while attempt_for_secret_word < 4:
+            ask_for_secret_word = input("Please enter your third secret word to check balance : \n")
+            if ask_for_secret_word == self.third_secret_word:
+                attempt_for_pin = 1
+                while attempt_for_pin < 4:
+                    ask_for_pin = input("Enter your pin number to check your balance : \n")
+                    if ask_for_pin == self.pin:
+                        print(f"Here is your balance : {self.balance}")
+                        self.manu()
+                    else:
+                        if attempt_for_pin < 3:
+                            print(f"You entered a wrong pin. You have only {3 - attempt_for_pin} chance.", end="\n\n")
+                        else:
+                            print("You have used your maximum attempt to check balance. You are redirected to main manu.",end='\n\n')
+                            self.manu()
+                    attempt_for_pin += 1
+            else:
+                if attempt_for_secret_word < 3:
+                    print(f"You entered your third secret word wrong. You have only {3 - attempt_for_secret_word} chance.", end='\n\n')
+                else:
+                    print("You have used your maximum attempt to give your third secret word. You are redirected to main manu.", end='\n\n')
+                    self.manu()
+            attempt_for_secret_word += 1
+        self.manu()
 
+#=======================================================================================================================
 
-
-
-
-
-
-
+    def deposit(self):
+        attempt_for_secret_word = 1
+        while attempt_for_secret_word < 4:
+            ask_for_secret_word = input("Please enter your first secret word to check balance : \n")
+            if ask_for_secret_word == self.first_secret_word:
+                attempt_for_pin = 1
+                while attempt_for_pin < 4:
+                    ask_for_pin = input("Enter your pin number to deposit your balance : \n")
+                    if ask_for_pin == self.pin:
+                        ask_for_amount = input("Please enter the amount to deposit : ")
+                        self.balance += ask_for_amount
+                        print(f"You deposit {ask_for_amount} taka successfully.")
+                        print(f"Here is your total balance : {self.balance}")
+                        self.manu()
+                    else:
+                        if attempt_for_pin < 3:
+                            print(f"You entered a wrong pin. You have only {3 - attempt_for_pin} chance.", end="\n\n")
+                        else:
+                            print("You have used your maximum attempt to deposit your balance. You are redirected to main manu.",end='\n\n')
+                            self.manu()
+                    attempt_for_pin += 1
+            else:
+                if attempt_for_secret_word < 3:
+                    print(f"You entered your first secret word wrong. You have only {3 - attempt_for_secret_word} chance.",end='\n\n')
+                else:
+                    print("You have used your maximum attempt to give your first secret word. You are redirected to main manu.", end='\n\n')
+                    self.manu()
+            attempt_for_secret_word += 1
+        self.manu()
 
 
 nila = ATMMachine()
